@@ -40,8 +40,8 @@ contains
     SnowCoverFrac = 0.0
     if ( SnowDepth > 0.0 ) then
          !calculate SCF parameters as a function of grid size:
-         SnowMeltFac = 0.9713 + tanh(0.7436*(GridSize/1000));
-         SnowCoverFac = 0.0062*sinh(0.0555*(GridSize/1000))+ 0.0555;
+         SnowMeltFac = 0.9713 + tanh(0.7436*max((GridSize/1000),36.0));
+         SnowCoverFac = 0.0062*sinh(0.0555*max((GridSize/1000),36.0))+ 0.0555;
          !using scale-dependent parameters, employ the Niu-Yang 07 SCF soluiton
          SnowDensBulk  = SnowWaterEquiv / SnowDepth
          MeltFac       = (SnowDensBulk / 100.0)**SnowMeltFac
